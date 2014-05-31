@@ -31,10 +31,14 @@ public class Hello {
         mapperFacade.map(personSrc, personDst2);
         System.out.println("dest in-place: " + personDst2);
 
-        // BoundMapperFacade & reverse mapping
-        PersonSrc personSrc2 = mapperFactory.getMapperFacade(PersonSrc.class, PersonDst.class)
-                .mapReverse(personDst);
+        // Back mapping
+        PersonSrc personSrc2 = mapperFacade.map(personDst, PersonSrc.class);
         System.out.println("back to source: " + personSrc2);
+
+        // BoundMapperFacade & reverse mapping
+        PersonSrc personSrc3 = mapperFactory.getMapperFacade(PersonSrc.class, PersonDst.class)
+                .mapReverse(personDst);
+        System.out.println("back to source with bound facade: " + personSrc3);
     }
 
     public static class PersonSrc {
